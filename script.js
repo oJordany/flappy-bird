@@ -82,11 +82,14 @@ function Passaro(alturaJogo){
     this.getY = () => parseInt(this.elemento.style.bottom.split('px')[0])
     this.setY = y => this.elemento.style.bottom = `${y}px`
 
+    window.onmousedown = e => voando = true
+    window.onmouseup = e => voando = false
     window.onkeydown = e => voando = true
     window.onkeyup = e => voando = false
 
     this.animar = () => {
         const novoY = this.getY() + (voando ? 8 : -5)
+        this.elemento.src = voando ? 'imgs/passaroUp.png' : 'imgs/passaro.png'
         const alturaMaxima = alturaJogo - this.elemento.clientHeight     
 
         if (novoY <= 0) {
